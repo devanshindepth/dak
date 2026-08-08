@@ -1,0 +1,240 @@
+{
+  "branding": {
+    "appName": "Dak"
+  },
+  "theme": {
+    "backgroundColor": "240 10 4",
+    "primaryColor": "0 0 98",
+    "positiveColor": "142 71 45",
+    "negativeColor": "0 84 60",
+    "contrastMultiplier": 1.3
+  },
+  "pages": [
+    {
+      "name": "Home",
+      "headWidgets": [
+        {
+          "type": "markets",
+          "id": "home-markets",
+          "title": "Markets Watch",
+          "markets": [
+            { "symbol": "BTC-USD", "name": "Bitcoin" },
+            { "symbol": "ETH-USD", "name": "Ethereum" },
+            { "symbol": "SPY", "name": "S&P 500 ETF" },
+            { "symbol": "NVDA", "name": "NVIDIA Corp" },
+            { "symbol": "AAPL", "name": "Apple Inc" }
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "size": "small",
+          "widgets": [
+            {
+              "type": "search",
+              "title": "AI & Web Search",
+              "autofocus": true,
+              "enableAiSearch": true
+            },
+            {
+              "type": "calendar",
+              "firstDayOfWeek": "monday"
+            },
+            {
+              "type": "weather",
+              "location": "New York",
+              "latitude": 40.7128,
+              "longitude": -74.006,
+              "units": "metric",
+              "hourFormat": "12h"
+            },
+            {
+              "type": "bookmarks",
+              "id": "home-bookmarks",
+              "groups": [
+                {
+                  "title": "Quick Access",
+                  "links": [
+                    { "title": "Gmail", "url": "https://mail.google.com", "icon": "si:gmail" },
+                    { "title": "GitHub", "url": "https://github.com", "icon": "si:github" },
+                    { "title": "YouTube", "url": "https://youtube.com", "icon": "si:youtube" },
+                    { "title": "Reddit", "url": "https://reddit.com", "icon": "si:reddit" }
+                  ]
+                },
+                {
+                  "title": "Dev Platforms",
+                  "links": [
+                    { "title": "LeetCode", "url": "https://leetcode.com", "icon": "si:leetcode" },
+                    { "title": "Codeforces", "url": "https://codeforces.com", "icon": "si:codeforces" },
+                    { "title": "MDN Web Docs", "url": "https://developer.mozilla.org", "icon": "si:mdnwebdocs" },
+                    { "title": "Vercel", "url": "https://vercel.com", "icon": "si:vercel" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "size": "full",
+          "widgets": [
+            {
+              "type": "group",
+              "widgets": [
+                {
+                  "type": "hacker-news",
+                  "title": "Hacker News",
+                  "limit": 15,
+                  "collapseAfter": 5,
+                  "sortBy": "top"
+                },
+                {
+                  "type": "reddit",
+                  "id": "home-reddit",
+                  "title": "r/selfhosted",
+                  "subreddit": "selfhosted",
+                  "showThumbnails": true,
+                  "limit": 10,
+                  "collapseAfter": 5
+                }
+              ]
+            },
+            {
+              "type": "rss",
+              "id": "home-rss",
+              "title": "Technology News",
+              "style": "vertical-list",
+              "limit": 12,
+              "collapseAfter": 5,
+              "feeds": [
+                { "url": "https://feeds.arstechnica.com/arstechnica/index", "title": "Ars Technica", "limit": 4 },
+                { "url": "https://www.theverge.com/rss/index.xml", "title": "The Verge", "limit": 4 },
+                { "url": "https://techcrunch.com/feed/", "title": "TechCrunch", "limit": 4 }
+              ]
+            }
+          ]
+        },
+        {
+          "size": "small",
+          "widgets": [
+            {
+              "type": "clock",
+              "hourFormat": "12h",
+              "timezones": [
+                { "timezone": "America/New_York", "label": "New York" },
+                { "timezone": "Europe/London", "label": "London" },
+                { "timezone": "Asia/Kolkata", "label": "India" },
+                { "timezone": "Asia/Tokyo", "label": "Tokyo" }
+              ]
+            },
+            {
+              "type": "codeforces",
+              "title": "Codeforces CP",
+              "handle": "Tourist",
+              "showUpcomingContests": true,
+              "limitContests": 3
+            },
+            {
+              "type": "leetcode",
+              "title": "LeetCode Daily",
+              "username": "leetcode"
+            },
+            {
+              "type": "todo",
+              "title": "Tasks & Notes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dev & Media",
+      "columns": [
+        {
+          "size": "full",
+          "widgets": [
+            {
+              "type": "videos",
+              "id": "dev-videos",
+              "title": "YouTube Tech Channels",
+              "channels": [
+                "UCsBjURrPoezykLs9EqgamOA",
+                "UCXuqSBlHAE6Xw-yeJA0Tunw",
+                "UCBJycsmduvYEL83R_U4JriQ"
+              ],
+              "limit": 6
+            },
+            {
+              "type": "releases",
+              "title": "Framework Releases",
+              "repositories": [
+                "vercel/next.js",
+                "facebook/react",
+                "tailwindlabs/tailwindcss"
+              ]
+            }
+          ]
+        },
+        {
+          "size": "small",
+          "widgets": [
+            {
+              "type": "monitor",
+              "title": "System Ping",
+              "sites": [
+                { "title": "Google", "url": "https://www.google.com" },
+                { "title": "GitHub Status", "url": "https://www.githubstatus.com" },
+                { "title": "Cloudflare", "url": "https://www.cloudflare.com" },
+                { "title": "Vercel", "url": "https://vercel.com" }
+              ]
+            },
+            {
+              "type": "repository",
+              "title": "Next.js Repo",
+              "repository": "vercel/next.js"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "News & Portfolio",
+      "columns": [
+        {
+          "size": "full",
+          "widgets": [
+            {
+              "type": "stock-news",
+              "id": "news-stock-widget",
+              "title": "Tracked Stock & Crypto News"
+            }
+          ]
+        },
+        {
+          "size": "small",
+          "widgets": [
+            {
+              "type": "project-tracker",
+              "id": "news-project-tracker",
+              "title": "Tracked Projects & Activity"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tools",
+      "columns": [
+        {
+          "size": "full",
+          "widgets": [
+            {
+              "type": "tools",
+              "id": "design-engineer-tools",
+              "title": "Design Engineer Tools Catalog"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
