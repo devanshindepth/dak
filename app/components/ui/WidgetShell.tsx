@@ -4,6 +4,7 @@ import React from 'react';
 
 interface WidgetShellProps {
   title?: string;
+  subtitle?: string;
   titleUrl?: string;
   hideHeader?: boolean;
   error?: boolean;
@@ -15,6 +16,7 @@ interface WidgetShellProps {
 
 export function WidgetShell({
   title,
+  subtitle,
   titleUrl,
   hideHeader = false,
   error = false,
@@ -30,9 +32,13 @@ export function WidgetShell({
           {titleUrl ? (
             <a href={titleUrl} target="_blank" rel="noopener noreferrer" className="widget-title">
               {title}
+              {subtitle && <span className="text-[10px] opacity-60 ml-1 font-normal">({subtitle})</span>}
             </a>
           ) : (
-            <span className="widget-title">{title}</span>
+            <span className="widget-title">
+              {title}
+              {subtitle && <span className="text-[10px] opacity-60 ml-1 font-normal">({subtitle})</span>}
+            </span>
           )}
           <div className="widget-header-actions">
             {headerAction}
