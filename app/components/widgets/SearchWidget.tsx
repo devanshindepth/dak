@@ -119,11 +119,13 @@ export default function SearchWidget({ config }: { config: SearchWidgetConfig })
               ref={inputRef}
               type="text"
               id="ai-search-input"
-              className="search-input pr-8"
+              className="search-input pr-8 font-mono text-xs"
               placeholder={`Search with ${selectedEngine.name}... (Press '/' to focus)`}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoFocus={config.autofocus}
+              autoComplete="off"
+              spellCheck="false"
             />
             {query && (
               <button
