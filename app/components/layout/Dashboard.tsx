@@ -39,6 +39,10 @@ export function Dashboard({ config }: DashboardProps) {
       } else if (e.key.toLowerCase() === 't') {
         e.preventDefault();
         setPreset(currentPreset === 'slate' ? 'snow' : 'slate');
+      } else if (e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        const bookmarkInput = document.getElementById('bookmark-search-input');
+        if (bookmarkInput) bookmarkInput.focus();
       } else if (e.key === '?') {
         e.preventDefault();
         setIsKeybindingsOpen(true);
