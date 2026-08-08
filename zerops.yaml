@@ -1,0 +1,16 @@
+zerops:
+  - setup: dak-app
+    build:
+      base: nodejs@20
+      buildCommands:
+        - npm ci
+        - npm run build
+      deployFiles:
+        - .next
+        - node_modules
+        - package.json
+        - public
+        - app
+    run:
+      base: nodejs@20
+      start: npm run start
