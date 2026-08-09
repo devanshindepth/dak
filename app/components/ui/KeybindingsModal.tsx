@@ -17,6 +17,7 @@ export function KeybindingsModal({ isOpen, onClose }: KeybindingsModalProps) {
         { key: '/', description: 'Focus AI Search bar' },
         { key: 'b', description: 'Focus Bookmarks filter input' },
         { key: 't', description: 'Toggle Theme (Slate Dark / Snow Light)' },
+        { key: 'Shift + T', description: 'Open Screen Typing Mode' },
         { key: '?', description: 'Open Keyboard Shortcuts cheat sheet' },
         { key: 'Esc', description: 'Dismiss modal or clear input focus' },
       ],

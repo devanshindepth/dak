@@ -24,6 +24,10 @@ import LeetCodeWidget from './LeetCodeWidget';
 import ToolsWidget from './ToolsWidget';
 import StockNewsWidget from './StockNewsWidget';
 import ProjectTrackerWidget from './ProjectTrackerWidget';
+import TypingProgressWidget from './TypingProgressWidget';
+import ScrapedListWidget from './ScrapedListWidget';
+import AiBenchmarkWidget from './AiBenchmarkWidget';
+import GitHubHeatmapWidget from './GitHubHeatmapWidget';
 
 export const widgetRegistry: Record<string, React.ComponentType<{ config: any; renderWidget?: any }>> = {
   'bookmarks': BookmarksWidget,
@@ -50,6 +54,10 @@ export const widgetRegistry: Record<string, React.ComponentType<{ config: any; r
   'tools': ToolsWidget,
   'stock-news': StockNewsWidget,
   'project-tracker': ProjectTrackerWidget,
+  'typing-progress': TypingProgressWidget,
+  'scraped-list': ScrapedListWidget,
+  'ai-benchmark': AiBenchmarkWidget,
+  'github-heatmap': GitHubHeatmapWidget,
 };
 
 export function renderWidget(config: WidgetConfig, key: string) {
