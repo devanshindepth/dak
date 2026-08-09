@@ -1,6 +1,7 @@
 # Dak - Personal Developer Dashboard
 
 A high-performance, modular developer dashboard built with Next.js 16, React 19, TypeScript, and Tailwind CSS. **Dak** aggregates real-time technical news, competitive programming metrics, GitHub activity, financial markets, AI benchmarks, weather, and developer tools into a unified, customizable interface.
+<img width="1920" height="1080" alt="Screenshot (25)" src="https://github.com/user-attachments/assets/d484250e-1125-40de-9da3-71c5b371c7a2" />
 
 ---
 
