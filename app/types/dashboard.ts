@@ -30,7 +30,11 @@ export type WidgetType =
   | "leetcode"
   | "tools"
   | "stock-news"
-  | "project-tracker";
+  | "project-tracker"
+  | "typing-progress"
+  | "scraped-list"
+  | "ai-benchmark"
+  | "github-heatmap";
 
 // ─── Base Widget Config ──────────────────────────────────────────────
 export interface BaseWidgetConfig {
@@ -284,6 +288,48 @@ export interface SplitColumnWidgetConfig extends BaseWidgetConfig {
   widgets: [WidgetConfig[], WidgetConfig[]];
 }
 
+// ─── Scraped List ────────────────────────────────────────────────────
+export interface ScrapedListWidgetConfig extends BaseWidgetConfig {
+  type: "scraped-list";
+  /** The page URL to scrape */
+  url: string;
+  /** Natural language instruction for what to extract, e.g. "top 5 models by score" */
+  prompt: string;
+  /** How many items to show (default 5) */
+  limit?: number;
+  /** Label for the value column header, e.g. "Score" */
+  valueLabel?: string;
+}
+
+// ─── Typing Progress ────────────────────────────────────────────────
+export interface TypingResult {
+  id: string;
+  timestamp: number;
+  wpm: number;
+  accuracy: number;
+  cpm: number;
+  durationSeconds: number;
+  sourceCategory: string;
+  sourceTitle: string;
+}
+
+export interface TypingProgressWidgetConfig extends BaseWidgetConfig {
+  type: "typing-progress";
+  limitHistory?: number;
+}
+
+// ─── AI Benchmark ───────────────────────────────────────────────────
+export interface AiBenchmarkWidgetConfig extends BaseWidgetConfig {
+  type: "ai-benchmark";
+  initialCategory?: string;
+}
+
+// ─── GitHub Heatmap ──────────────────────────────────────────────────
+export interface GitHubHeatmapWidgetConfig extends BaseWidgetConfig {
+  type: "github-heatmap";
+  username?: string;
+}
+
 // ─── Discriminated Widget Union ──────────────────────────────────────
 export type WidgetConfig =
   | RSSWidgetConfig
@@ -313,7 +359,11 @@ export type WidgetConfig =
   | GroupWidgetConfig
   | SplitColumnWidgetConfig
   | CodeforcesWidgetConfig
-  | LeetCodeWidgetConfig;
+  | LeetCodeWidgetConfig
+  | TypingProgressWidgetConfig
+  | ScrapedListWidgetConfig
+  | AiBenchmarkWidgetConfig
+  | GitHubHeatmapWidgetConfig;
 
 // ─── Layout Config ──────────────────────────────────────────────────
 export interface ColumnConfig {
