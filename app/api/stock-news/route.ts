@@ -11,11 +11,11 @@ export interface StockNewsArticle {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const filterSymbol = searchParams.get('symbol') || 'ALL';
+  const filterSymbol = (searchParams.get('symbol') || 'ALL').toUpperCase();
 
   try {
     // Curated RSS feeds for financial news & tracked stock tickers
-    const feeds = [
+    const defaultFeeds = [
       {
         symbol: 'BTC-USD',
         name: 'Bitcoin News',
@@ -43,23 +43,50 @@ export async function GET(request: NextRequest) {
       },
     ];
 
-    const targetFeeds = filterSymbol === 'ALL'
-      ? feeds
-      : feeds.filter((f) => f.symbol.toUpperCase() === filterSymbol.toUpperCase());
+    let targetFeeds: { symbol: string; name: string; url: string }[] = [];
+
+    if (filterSymbol === 'ALL') {
+      targetFeeds = defaultFeeds;
+    } else {
+      const found = defaultFeeds.filter((f) => f.symbol === filterSymbol);
+      if (found.length > 0) {
+        targetFeeds = found;
+      } else {
+        // Dynamic feeds for custom symbols (Yahoo Finance & Google News RSS)
+        targetFeeds = [
+          {
+            symbol: filterSymbol,
+            name: `${filterSymbol} Yahoo Finance`,
+            url: `https://feeds.finance.yahoo.com/rss/2.0/headline?s=${encodeURIComponent(filterSymbol)}&region=US&lang=en-US`,
+          },
+          {
+            symbol: filterSymbol,
+            name: `${filterSymbol} Market News`,
+            url: `https://news.google.com/rss/search?q=${encodeURIComponent(filterSymbol)}+stock+OR+crypto&hl=en-US&gl=US&ceid=US:en`,
+          },
+        ];
+      }
+    }
 
     const articles: StockNewsArticle[] = [];
 
     await Promise.all(
       targetFeeds.map(async (feed) => {
         try {
-          const res = await fetch(feed.url, { next: { revalidate: 300 } });
+          const res = await fetch(feed.url, {
+            headers: {
+              'User-Agent':
+                'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+            },
+            next: { revalidate: 300 },
+          });
           if (!res.ok) return;
           const xml = await res.text();
 
           const itemRegex = /<item>([\s\S]*?)<\/item>/g;
           let match;
           let count = 0;
-          while ((match = itemRegex.exec(xml)) !== null && count < 4) {
+          while ((match = itemRegex.exec(xml)) !== null && count < 6) {
             const item = match[1];
             const titleMatch = item.match(/<title>([\s\S]*?)<\/title>/);
             const linkMatch = item.match(/<link>([\s\S]*?)<\/link>/);
@@ -95,39 +122,22 @@ export async function GET(request: NextRequest) {
 
     // Fallback news if external RSS is temporarily unreachable
     if (articles.length === 0) {
-      articles.push(
-        {
-          title: 'NVIDIA Announces Next-Gen AI Infrastructure Roadmap & Market Expansion',
-          link: 'https://finance.yahoo.com/quote/NVDA/',
-          pubDate: new Date().toISOString(),
-          source: 'Market Wire',
-          symbol: 'NVDA',
-          snippet: 'NVIDIA continues solidifying its position in datacenter AI hardware solutions.',
-        },
-        {
-          title: 'Bitcoin Holds Strong Above Technical Support as Institutional Volume Surges',
-          link: 'https://coindesk.com',
-          pubDate: new Date().toISOString(),
-          source: 'Crypto Insight',
-          symbol: 'BTC-USD',
-          snippet: 'Market indicators highlight sustained accumulation across crypto spot markets.',
-        },
-        {
-          title: 'Apple Expands On-Device AI Intelligence Capability Across Developer Ecosystem',
-          link: 'https://finance.yahoo.com/quote/AAPL/',
-          pubDate: new Date().toISOString(),
-          source: 'Tech Market',
-          symbol: 'AAPL',
-          snippet: 'Apple highlights upcoming silicon efficiency improvements for machine learning.',
-        }
-      );
+      articles.push({
+        title: `Latest Updates & Market Intelligence for ${filterSymbol}`,
+        link: `https://finance.yahoo.com/quote/${encodeURIComponent(filterSymbol)}/`,
+        pubDate: new Date().toISOString(),
+        source: 'Market Intelligence',
+        symbol: filterSymbol,
+        snippet: `Tracked financial activity and real-time updates for ${filterSymbol}.`,
+      });
     }
 
     // Sort by publication date
     articles.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
-    return NextResponse.json(articles.slice(0, 15));
+    return NextResponse.json(articles.slice(0, 20));
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch stock news' }, { status: 500 });
   }
 }
+
