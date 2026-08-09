@@ -12,7 +12,9 @@
     "@zerops/zcli": "^1.1.0",
     "next": "16.3.0",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-activity-calendar": "^3.2.1",
+    "react-dom": "19.2.8",
+    "react-github-calendar": "5.0.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -31,12 +31,6 @@
           "size": "small",
           "widgets": [
             {
-              "type": "search",
-              "title": "AI & Web Search",
-              "autofocus": true,
-              "enableAiSearch": true
-            },
-            {
               "type": "calendar",
               "firstDayOfWeek": "monday"
             },
@@ -141,36 +135,58 @@
             {
               "type": "todo",
               "title": "Tasks & Notes"
+            },
+            {
+              "type": "typing-progress",
+              "title": "Typing Speed Progress",
+              "limitHistory": 10
             }
           ]
         }
       ]
     },
     {
-      "name": "Dev & Media",
+      "name": "Media",
       "columns": [
         {
           "size": "full",
           "widgets": [
             {
               "type": "videos",
-              "id": "dev-videos",
-              "title": "YouTube Tech Channels",
+              "id": "media-videos",
+              "title": "YouTube Tech Channels & Latest Videos",
               "channels": [
                 "UCsBjURrPoezykLs9EqgamOA",
                 "UCXuqSBlHAE6Xw-yeJA0Tunw",
                 "UCBJycsmduvYEL83R_U4JriQ"
               ],
-              "limit": 6
-            },
+              "limit": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dev",
+      "columns": [
+        {
+          "size": "full",
+          "widgets": [
             {
               "type": "releases",
+              "id": "dev-framework-releases",
               "title": "Framework Releases",
               "repositories": [
                 "vercel/next.js",
                 "facebook/react",
                 "tailwindlabs/tailwindcss"
               ]
+            },
+            {
+              "type": "github-heatmap",
+              "id": "dev-github-heatmap",
+              "title": "Developer GitHub Heatmap",
+              "username": "devanshindepth"
             }
           ]
         },
@@ -179,25 +195,18 @@
           "widgets": [
             {
               "type": "monitor",
-              "title": "System Ping",
+              "id": "dev-project-status",
+              "title": "Project Status",
               "sites": [
-                { "title": "Google", "url": "https://www.google.com" },
-                { "title": "GitHub Status", "url": "https://www.githubstatus.com" },
-                { "title": "Cloudflare", "url": "https://www.cloudflare.com" },
-                { "title": "Vercel", "url": "https://vercel.com" }
+                { "title": "dport", "url": "https://dport-one.vercel.app/" }
               ]
-            },
-            {
-              "type": "repository",
-              "title": "Next.js Repo",
-              "repository": "vercel/next.js"
             }
           ]
         }
       ]
     },
     {
-      "name": "News & Portfolio",
+      "name": "Stock News",
       "columns": [
         {
           "size": "full",
@@ -206,16 +215,6 @@
               "type": "stock-news",
               "id": "news-stock-widget",
               "title": "Tracked Stock & Crypto News"
-            }
-          ]
-        },
-        {
-          "size": "small",
-          "widgets": [
-            {
-              "type": "project-tracker",
-              "id": "news-project-tracker",
-              "title": "Tracked Projects & Activity"
             }
           ]
         }
@@ -231,6 +230,21 @@
               "type": "tools",
               "id": "design-engineer-tools",
               "title": "Design Engineer Tools Catalog"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AI Benchmark",
+      "columns": [
+        {
+          "size": "full",
+          "widgets": [
+            {
+              "type": "ai-benchmark",
+              "id": "ai-benchmark-catalog",
+              "title": "Frontier AI Benchmarks & Evaluation Suite"
             }
           ]
         }
